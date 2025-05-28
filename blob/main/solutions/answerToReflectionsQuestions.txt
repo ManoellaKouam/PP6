@@ -1,0 +1,75 @@
+Task 1 : Bash 
+- - - - - - - -
+
+1. echo always exits with a 0 status, and simply prints arguments followed by an end of line character on the standard output, while printf has more control over the output format.
+
+2. It sets up environment variables, aliases, functions, and shell settings that customize the terminal behavior.
+
+3. source ~/.bashrc Variables remain after execution, while ./print.sh variable are lost
+
+Task 2 : assembly
+- - - - - - - - -
+
+1. A file descriptor is a non-negative integer used by the operating system to uniquely identify an open file or I/O resource in a process.
+When you open a file, socket, pipe, etc., the OS returns a file descriptor.
+
+2. Use open(), socket(), pipe(), etc to obtain the file descriptor
+
+3. syscall will Fail immediately
+
+Task 3: C
+- - - -  - -
+
+1. printf call corresponds to: call   1040 <printf@plt>
+
+2. The difference comes down to historical and design differences.
+
+The syntax used in GAS (GNU Assembler) and NASM (Netwide Assembler) is different because they follow different conventions.
+
+Operand Order:
+    GAS (also called AT&T syntax) writes instructions with the source first and the destination second. For example: mov %rax, %rbx moves the contents of RAX into RBX.
+    NASM (Intel syntax) writes the destination first and the source second. For example: mov rbx, rax does the same operation.
+
+Register Naming:
+    GAS requires registers to start with a % symbol, like %rax or %rbx.
+    NASM does not use a prefix. You simply write rax, rbx, etc.
+
+Immediate Values:
+    GAS uses a $ to indicate immediate values (constants). For example: $0x10 is the constant 16.
+    NASM just writes the number directly, like 0x10 or 10h.
+
+Memory Addressing:
+    GAS uses parentheses for memory access. For example: (%rax) means the memory at the address in RAX.
+    NASM uses square brackets. So it would be [rax].
+
+3. We can use fprintf to write formatted output to any FILE* stream — including stdout and a file.
+
+Example.c
+- - -  - -
+
+#include <stdio.h>
+
+int main() {
+    FILE *file = fopen("log.txt", "w");
+    if (!file) {
+        perror("fopen");
+        return 1;
+    }
+
+    int value = 42;
+    fprintf(stdout, "Value is %d\n", value);
+    fprintf(file, "Value is %d\n", value);
+
+    fclose(file);
+    return 0;
+}
+
+
+
+
+Task 4: python: 
+- -- - - - -- -
+
+1. Python’s print behavior is closest to C when compared to Bash, Assembly, or C, due to its focus on outputting text to the standard output (stdout) stream in a high-level, structured way.
+
+2. You cannot directly inspect a Python script's binary with objdump because Python scripts are typically written in high-level, human-readable source code (.py files) and are not compiled into machine code binaries.
